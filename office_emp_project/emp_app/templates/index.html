@@ -1,0 +1,11 @@
+{% extends "layouts.html" %}
+{% block title %}Home | Page{% endblock %}   
+{% block content %}
+    <div class="text-center">
+    <a href="{% url "all_emp" %}" role="button" class="btn btn-primary rounded-0">View ALL EMPLOYEE</a>
+    <a href="{% url "add_emp" %}" role="button" class="btn btn-success rounded-0">ADD an Employee</a>
+    <a href="{% url "filter_emp" %}" role="button" class="btn btn-warning rounded-0">Filter Employee Details</a>
+    <a href="{% url "remove_emp" %}" role="button" class="btn btn-danger rounded-0">Remove An Employee</a>
+</div>
+</div>
+{% endblock %}

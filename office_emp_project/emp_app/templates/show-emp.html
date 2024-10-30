@@ -1,0 +1,85 @@
+{% extends "layouts.html" %}
+{% block title %}EMPLOYEE | LIST{% endblock %}
+{% block content %}
+<div class="row m-auto">
+<div class="col-md-12 m-auto">
+  <form action="" method="get">
+    <div class="d-flex  m-auto my-2">
+    <input type="text" placeholder="Search Employee here" name="search_term" id="" class="form-control w-75 rounded-0">
+    <button type="submit" class="btn btn-warning mx-3 rounded-0">Search</button>
+    <div class="d-flex my-2 justify-content-end">
+      <a href="{% url "add_emp" %}" class="btn btn-success">Add Employee</a>
+    </div>
+  </div>
+  </form>
+  
+{% if messages %}
+{% for message in messages  %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success!</strong>{{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+</div>
+  {% if employee_finalData %}
+  <table class="table table-dark class="text-center m-auto" table-bordered table-stripped table-hover">
+    <thead>
+      <th scope="row">ID</th>
+      <th>Image</th>
+      <th>Fisrt Name</th>
+      <th>Last Name</th>
+   
+      <th>Department</th>
+      <th>Location</th>
+      <th>Role</th>
+      <th>Salary</th>
+      <th>Bonus</th>
+      <th>Phone</th>
+      <th>Hire Date</th>
+    
+    </thead>
+    <tbody>
+    {% for employee in employee_finalData  %}
+    <tr>
+      <td class="text-center m-auto">{{employee.id}}</td>
+      <td class="text-center m-auto">
+        <img src="{{employee.photo.url}}" width="150px" height="150px" style="object-fit:contain"  alt="">
+      </td>
+      <td class="text-center m-auto">{{employee.first_name}}</td>
+      <td class="text-center m-auto">{{employee.last_name}}</td>
+      <td class="text-center m-auto">{{employee.dept.name}}</td>
+      <td class="text-center m-auto">{{employee.dept.location}}</td>
+      <td class="text-center m-auto">{{employee.role.name}}</td>
+      <td class="text-center m-auto">{{employee.salary}}/-</td>
+      <td class="text-center m-auto">{{employee.bonus}}/-</td>
+      <td class="text-center m-auto">+91{{employee.phone}}</td>
+      <td class="text-center m-auto">{{employee.hire_date}}</td>
+     
+    </tr>
+ 
+    {% endfor %}
+  </tbody>
+    {% else %}
+
+    <h2 class="text-center">No Data Found</h2>
+    {% endif %}
+  </table>
+    <div class="my-3 m-auto">
+    <nav aria-label="Page  navigation example">
+        <ul class="pagination">
+           {% if employee_finalData.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{employee_finalData.previous_page_number}}">Previous</a></li>
+          {% endif %} 
+          {% for n in totalPagelist  %}
+          <li class="page-item"><a class="page-link" href="?page={{n}}">{{n}}</a></li>
+          {% endfor %}
+         
+          {% if employee_finalData.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{employee_finalData.next_page_number}}">Next</a></li>
+          {% endif %} 
+        </ul>
+      </nav>
+    </div>
+</div>
+{% endblock  %}

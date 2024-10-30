@@ -1,0 +1,72 @@
+{% extends "layouts.html" %}
+{% block title %}Add Employee{% endblock %}
+{% block content %}
+<div class="col-md-6 m-auto">
+<div class="card p-4">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="d-flex justify-content-between">
+        <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">First Name</label>
+      <input type="name" class="form-control" placeholder="First Name" name="fname" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Last Name</label>
+        <input type="name" class="form-control" placeholder="Last Name" name="lname" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Department</label>
+      <select name="dept" id="" class="form-control">
+        <option value="select department" selected>Select Department</option>
+        {% for dept in depts  %}
+        <option value="{{dept.id}}">{{dept.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    
+    
+      <div class="d-flex justify-content-between">
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Salary</label>
+       <input type="number" name="salary" placeholder="Salary" id="" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Bonus</label>
+       <input type="number" name="bonus" placeholder="Bonus" id="" class="form-control">
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Roles</label>
+            <select name="role" id="" class="form-control">
+              <option value="select Role" selected>Select Role</option>
+              {% for role in roles  %}
+              <option value="{{role.id}}">{{role.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+       
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Hire Date</label>
+       <input type="date" name="hire_date" id="" class="form-control">
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">      
+    <div class="mb-3 ">
+        <label for="exampleInputPassword1" class="form-label">Employee Image</label>
+       <input type="file" name="emp_img" id="" class="form-control">
+      </div>
+
+      <div class="mb-3 mx-4">
+        <label for="exampleInputPassword1" class="form-label">Phone</label>
+       <input type="number" placeholder="Phone Number" name="phone_number" id="" class="form-control">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</div>
+{% endblock %}

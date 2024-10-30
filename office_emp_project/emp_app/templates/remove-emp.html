@@ -1,0 +1,19 @@
+{% extends "layouts.html" %}
+{% block title %}Remove Employee{% endblock %}
+{% block content %}
+<h1 class="fw-bold">Remove Employee</h1>
+<hr>
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Choose Employee to Be  Removed
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      {% for emp in emps  %}
+      <li><a class="dropdown-item" href="/remove-emp/{{emp.id}}">{{emp.first_name}} {{emp.last_name}}</a></li>
+      {% endfor %}
+    
+    </ul>
+  </div>
+
+
+{% endblock %}
